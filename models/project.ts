@@ -1,6 +1,5 @@
 interface Project {
-  // id: string;
-  id: number;
+  id: string;
   name: string;
   description: string;
   imageUrl: string;

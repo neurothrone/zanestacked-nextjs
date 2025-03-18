@@ -1,6 +1,5 @@
 interface Skill {
-  // id: string;
-  id: number;
+  id: string;
   name: string;
   yearsOfExperience: number;
   proficiency: string;
