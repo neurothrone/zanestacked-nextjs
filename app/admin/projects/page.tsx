@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 const ProjectsPage: NextPage = () => {
   return (
     <main>
-      <h2>Admin Projects Page</h2>
+      <h2>Projects Page</h2>
       <hr/>
       <ProjectList/>
     </main>

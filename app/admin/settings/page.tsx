@@ -8,7 +8,7 @@ export const metadata: Metadata = {
 const SettingsPage: NextPage = () => {
   return (
     <main>
-      <h2>Admin Settings Page</h2>
+      <h2>Settings Page</h2>
     </main>
   );
 }

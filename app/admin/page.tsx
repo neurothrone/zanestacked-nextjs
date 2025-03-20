@@ -8,7 +8,7 @@ export const metadata: Metadata = {
 const DashboardPage: NextPage = () => {
   return (
     <main>
-      <h2>Admin Index Page</h2>
+      <h2>Dashboard Page</h2>
       <hr/>
     </main>
   );
