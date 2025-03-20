@@ -1,17 +1,22 @@
 import { NextRequest } from "next/server";
 import { connectToDatabase } from "@/data/mongo-database";
 import InputProjectBody from "@/app/api/projects/InputProjectBody";
+import Project from "@/models/project";
+import ProjectEntity from "@/data/entities/project-entity";
+import { mapProjectEntityToProject } from "@/data/utils/mappers";
 
 const GET = async () => {
   const { db } = await connectToDatabase();
-  const projects = await db
-    .collection("projects")
+  const entities: ProjectEntity[] = await db
+    .collection<ProjectEntity>("projects")
     .find({})
     .toArray();
 
+  const projects: Project[] = entities.map(mapProjectEntityToProject);
+
   return new Response(JSON.stringify(projects), {
     status: 200,
-    headers: { "Content-Type": "application/json" }
+    headers: { "Content-Type": "application/json" },
   });
 };
 

@@ -1,13 +1,18 @@
 import { connectToDatabase } from "@/data/mongo-database";
 import { NextRequest } from "next/server";
 import InputSkillBody from "@/app/api/skills/InputSkillBody";
+import Skill from "@/models/skill";
+import SkillEntity from "@/data/entities/skill-entity";
+import { mapSkillEntityToSkill } from "@/data/utils/mappers";
 
 const GET = async () => {
   const { db } = await connectToDatabase();
-  const skills = await db
-    .collection("skills")
+  const entities: SkillEntity[] = await db
+    .collection<SkillEntity>("skills")
     .find({})
     .toArray();
+
+  const skills: Skill[] = entities.map(mapSkillEntityToSkill);
 
   return new Response(JSON.stringify(skills), {
     status: 200,
