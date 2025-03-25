@@ -3,6 +3,7 @@ import { ObjectId } from "bson";
 import { connectToDatabase } from "@/data/mongo-database";
 import InputProjectBody from "@/app/api/projects/InputProjectBody";
 import ProjectParams from "@/app/api/projects/ProjectParams";
+import slugify from "slugify";
 
 const GET = async (_: NextRequest, { params }: { params: ProjectParams }) => {
   const { db } = await connectToDatabase();
@@ -28,11 +29,16 @@ const PUT = async (request: NextRequest, { params }: { params: ProjectParams }) 
   const { projectId } = await params;
   const body: InputProjectBody = await request.json();
 
+  const data = {
+    ...body,
+    slug: slugify(body.name, { lower: true }),
+  };
+
   const updatedProject = await db
     .collection("projects")
     .findOneAndUpdate(
       { _id: new ObjectId(projectId) },
-      { $set: body },
+      { $set: data },
       { upsert: false, returnDocument: "after" }
     );
 
