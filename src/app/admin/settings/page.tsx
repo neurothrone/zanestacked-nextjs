@@ -1,8 +1,7 @@
 import { Metadata, NextPage } from "next";
 
 export const metadata: Metadata = {
-  title: "Settings - ZaneStacked",
-  description: "Settings page for ZaneStacked",
+  title: "Settings",
 };
 
 const SettingsPage: NextPage = () => {

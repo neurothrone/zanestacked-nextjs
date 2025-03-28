@@ -1,6 +1,10 @@
 import AdminNavBar from "@/src/components/admin/AdminNavBar";
 
-export default function AdminLayout({ children }: Readonly<{ children: React.ReactNode; }>) {
+const AdminLayout = ({
+  children
+}: Readonly<{
+  children: React.ReactNode;
+}>) => {
   return (
     <>
       <AdminNavBar/>
@@ -8,3 +12,5 @@ export default function AdminLayout({ children }: Readonly<{ children: React.Rea
     </>
   );
 }
+
+export default AdminLayout;

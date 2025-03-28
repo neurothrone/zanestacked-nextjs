@@ -1,8 +1,7 @@
 import { Metadata, NextPage } from "next";
 
 export const metadata: Metadata = {
-  title: "Dashboard - ZaneStacked",
-  description: "Dashboard page for ZaneStacked",
+  title: "Dashboard",
 };
 
 const DashboardPage: NextPage = () => {

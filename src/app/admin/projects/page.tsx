@@ -2,8 +2,7 @@ import { Metadata, NextPage } from "next";
 import ProjectList from "@/src/components/projects/ProjectList";
 
 export const metadata: Metadata = {
-  title: "Projects - ZaneStacked",
-  description: "Projects page for ZaneStacked",
+  title: "Projects",
 };
 
 const ProjectsPage: NextPage = () => {
