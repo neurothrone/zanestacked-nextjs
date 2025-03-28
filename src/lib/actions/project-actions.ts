@@ -1,17 +1,13 @@
 "use server";
 
-import postgres from "postgres";
 import { revalidatePath } from "next/cache";
+import postgres from "postgres";
+import ProjectSchema from "@/src/lib/validation/project-schema";
 
 const sql = postgres(process.env.POSTGRES_URL!, { ssl: "require" });
 
-export const deleteSkill = async (id: string) => {
-  await sql`DELETE
-            FROM skills
-            WHERE
-                id = ${id}`;
-  revalidatePath("/admin/skills");
-}
+const CreateProject = ProjectSchema.omit({ id: true });
+const UpdateProject = ProjectSchema.omit({ id: true });
 
 export const deleteProject = async (id: string) => {
   await sql`DELETE

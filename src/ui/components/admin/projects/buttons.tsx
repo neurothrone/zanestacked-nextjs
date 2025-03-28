@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { PencilIcon, PlusIcon, TrashIcon } from "@heroicons/react/24/outline";
-import { deleteProject } from "@/src/lib/actions";
+import { deleteProject } from "@/src/lib/actions/project-actions";
 
 const CreateProjectButton = () => {
   return (

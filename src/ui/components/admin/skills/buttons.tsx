@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { PencilIcon, PlusIcon, TrashIcon } from "@heroicons/react/24/outline";
-import { deleteSkill } from "@/src/lib/actions";
+import { deleteSkill } from "@/src/lib/actions/skill-actions";
 
 const CreateSkillButton = () => {
   return (
