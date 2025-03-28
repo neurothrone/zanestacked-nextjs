@@ -1,4 +1,8 @@
-import { NextPage } from "next";
+import { Metadata, NextPage } from "next";
+
+export const metadata: Metadata = {
+  title: "Contact",
+};
 
 const ContactPage: NextPage = () => {
   return (

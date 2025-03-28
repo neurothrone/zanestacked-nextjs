@@ -4,10 +4,7 @@ import ZaneHero from "@/src/components/public/ZaneHero";
 // import SkillList from "@/src/components/public/SkillList";
 // import ProjectList from "@/src/components/public/ProjectList";
 
-export const metadata: Metadata = {
-  title: "ZaneStacked",
-  description: "Home page for ZaneStacked",
-};
+export const metadata: Metadata = {};
 
 const HomePage: NextPage = () => {
   return (
