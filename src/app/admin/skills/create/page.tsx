@@ -1,15 +1,15 @@
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Add Project",
+  title: "Create Skill",
 };
 
-const AddProjectPage = async () => {
+const CreateSkillPage = async () => {
   return (
     <main>
-      <h1>Add Project</h1>
+      <h1>Create Skill</h1>
       <hr/>
     </main>
   );
 }
-export default AddProjectPage;
+export default CreateSkillPage;

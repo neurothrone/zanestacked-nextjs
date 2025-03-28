@@ -12,7 +12,7 @@ const SkillsPage = async () => {
     <main>
       <h2>Skills Page</h2>
       <hr/>
-      <Link href="/admin/skills/add" className="text-purple-400 hover:text-purple-500">Add Skill</Link>
+      <Link href="/admin/skills/create" className="text-purple-400 hover:text-purple-500">Add Skill</Link>
       <Suspense fallback={<h3>Loading...</h3>}>
         <Skills/>
       </Suspense>

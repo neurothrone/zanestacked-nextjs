@@ -12,7 +12,7 @@ const ProjectsPage = () => {
     <main>
       <h2>Projects Page</h2>
       <hr/>
-      <Link href="/admin/projects/add" className="text-purple-400 hover:text-purple-500">Add Project</Link>
+      <Link href="/admin/projects/create" className="text-purple-400 hover:text-purple-500">Add Project</Link>
       <Suspense fallback={<h3>Loading...</h3>}>
         <Projects/>
       </Suspense>
