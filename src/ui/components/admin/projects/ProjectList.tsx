@@ -1,5 +1,5 @@
 import { fetchProjects } from "@/src/data/postgres/data";
-import Link from "next/link";
+import { DeleteProjectButton, EditProjectButton } from "@/src/ui/components/admin/projects/buttons";
 
 const ProjectList = async () => {
   const projects = await fetchProjects();
@@ -9,8 +9,10 @@ const ProjectList = async () => {
       {projects.map((project) => (
         <li key={project.id}>
           <h3>{project.title}</h3>
-          <Link href={`/admin/projects/edit/${project.id}`} className="text-yellow-400 hover:text-yellow-500 me-2">Edit</Link>
-          <Link href="/admin/projects/create" className="text-red-400 hover:text-red-500">Delete</Link>
+          <div className="flex justify-end gap-2">
+            <EditProjectButton id={project.id}/>
+            <DeleteProjectButton id={project.id}/>
+          </div>
         </li>
       ))}
     </ul>
