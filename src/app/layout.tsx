@@ -1,15 +1,10 @@
-import { Orbitron } from "next/font/google";
 import "./globals.css";
+import { roboto } from "@/src/ui/fonts";
 
-const orbitron = Orbitron({
-  variable: "--font-orbitron",
-  subsets: ["latin"],
-});
-
-export default function RootLayout({ children, }: Readonly<{ children: React.ReactNode; }>) {
+export default function RootLayout({ children }: Readonly<{ children: React.ReactNode; }>) {
   return (
     <html lang="en">
-    <body className={`${orbitron.variable} ${orbitron.className} antialiased`}>
+    <body className={`${roboto.variable} ${roboto.className} antialiased`}>
       {children}
     </body>
     </html>
