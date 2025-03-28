@@ -20,8 +20,8 @@ const seedSkills = async () => {
   return await Promise.all(
     skills.map(
       (s) => sql`
-          INSERT INTO skills (name, yearsOfExperience, proficiency, createdDate)
-          VALUES (${s.name}, ${s.yearsOfExperience}, ${s.proficiency}, ${s.createdDate})
+          INSERT INTO skills (name, yearsOfExperience, proficiency)
+          VALUES (${s.name}, ${s.yearsOfExperience}, ${s.proficiency})
           ON CONFLICT (id) DO NOTHING;
       `,
     ),
