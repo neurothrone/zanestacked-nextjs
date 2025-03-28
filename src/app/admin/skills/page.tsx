@@ -1,16 +1,19 @@
+import { Suspense } from "react";
 import { Metadata, NextPage } from "next";
-import SkillList from "@/src/ui/components/admin/skills/SkillList";
+import Skills from "@/src/ui/components/admin/skills/Skills";
 
 export const metadata: Metadata = {
   title: "Skills",
 };
 
-const SkillsPage: NextPage = () => {
+const SkillsPage: NextPage = async () => {
   return (
     <main>
       <h2>Skills Page</h2>
       <hr/>
-      <SkillList/>
+      <Suspense fallback={<h3>Loading...</h3>}>
+        <Skills/>
+      </Suspense>
     </main>
   );
 }
