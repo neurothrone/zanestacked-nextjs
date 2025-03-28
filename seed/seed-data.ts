@@ -5,16 +5,15 @@ import { projects } from "@/seed/projects";
 const sql = postgres(process.env.POSTGRES_URL!, { ssl: "require" });
 
 const seedSkills = async () => {
-  await sql`CREATE
-      EXTENSION IF NOT EXISTS "uuid-ossp"`;
+  await sql`CREATE EXTENSION IF NOT EXISTS "uuid-ossp"`;
 
   await sql`
       CREATE TABLE IF NOT EXISTS skills (
-          id                UUID DEFAULT uuid_generate_v4() PRIMARY KEY,
+          id                UUID      DEFAULT uuid_generate_v4() PRIMARY KEY,
           name              VARCHAR(40) NOT NULL,
           yearsOfExperience INT         NOT NULL,
           proficiency       VARCHAR(15) NOT NULL,
-          createdDate       DATE        NOT NULL
+          created_at        TIMESTAMP DEFAULT CURRENT_TIMESTAMP
       );
   `;
 
@@ -30,18 +29,18 @@ const seedSkills = async () => {
 }
 
 const seedProjects = async () => {
-  await sql`CREATE
-      EXTENSION IF NOT EXISTS "uuid-ossp"`;
+  await sql`CREATE EXTENSION IF NOT EXISTS "uuid-ossp"`;
 
   await sql`
       CREATE TABLE IF NOT EXISTS projects (
-          id          UUID DEFAULT uuid_generate_v4() PRIMARY KEY,
-          name        VARCHAR(50) NOT NULL,
-          slug        VARCHAR(50) NOT NULL,
-          description TEXT        NOT NULL,
+          id          UUID      DEFAULT uuid_generate_v4() PRIMARY KEY,
+          name        VARCHAR(50)        NOT NULL,
+          slug        VARCHAR(50) UNIQUE NOT NULL,
+          description TEXT               NOT NULL,
           imageUrl    VARCHAR(255),
           githubUrl   VARCHAR(255),
-          demoUrl     VARCHAR(255)
+          demoUrl     VARCHAR(255),
+          created_at  TIMESTAMP DEFAULT CURRENT_TIMESTAMP
       );
   `;
 
