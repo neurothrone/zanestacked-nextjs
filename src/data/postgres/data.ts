@@ -37,7 +37,7 @@ export async function fetchProjectById(id: string) {
             *
         FROM projects
         WHERE
-            projects.id = ${id};
+            id = ${id};
     `;
     return data[0];
   } catch (error) {
@@ -53,7 +53,7 @@ export async function fetchSkillById(id: string) {
             *
         FROM skills
         WHERE
-            skills.id = ${id};
+            id = ${id};
     `;
     return data[0];
   } catch (error) {
