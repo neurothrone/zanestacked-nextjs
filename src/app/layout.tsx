@@ -1,5 +1,6 @@
-import "./globals.css";
+import "../ui/globals.css";
 import { roboto } from "@/src/ui/fonts";
+
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode; }>) {
   return (
