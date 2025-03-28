@@ -1,4 +1,4 @@
-import { Metadata, NextPage } from "next";
+import { Metadata } from "next";
 import PrimaryButton from "@/src/ui/components/public/PrimaryButton";
 import ZaneHero from "@/src/ui/components/public/ZaneHero";
 // import SkillList from "@/src/components/public/SkillList";
@@ -6,7 +6,7 @@ import ZaneHero from "@/src/ui/components/public/ZaneHero";
 
 export const metadata: Metadata = {};
 
-const HomePage: NextPage = () => {
+const HomePage= () => {
   return (
     <main>
       <ZaneHero/>

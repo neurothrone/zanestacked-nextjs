@@ -1,10 +1,10 @@
-import { Metadata, NextPage } from "next";
+import { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Dashboard",
 };
 
-const DashboardPage: NextPage = () => {
+const DashboardPage = () => {
   return (
     <main>
       <h2>Dashboard Page</h2>

@@ -1,10 +1,10 @@
-import { Metadata, NextPage } from "next";
+import { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "About",
 };
 
-const AboutPage: NextPage = () => {
+const AboutPage = () => {
   return (
     <div>
       <h1>About Page</h1>

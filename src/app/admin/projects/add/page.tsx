@@ -1,10 +1,10 @@
-import { Metadata, NextPage } from "next";
+import { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Add Project",
 };
 
-const AddProjectPage: NextPage = async () => {
+const AddProjectPage = async () => {
   return (
     <main>
       <h1>Add Project</h1>

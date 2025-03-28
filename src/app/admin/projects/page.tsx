@@ -1,5 +1,5 @@
 import { Suspense } from "react";
-import { Metadata, NextPage } from "next";
+import { Metadata } from "next";
 import Projects from "@/src/ui/components/admin/projects/Projects";
 import Link from "next/link";
 
@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   title: "Projects",
 };
 
-const ProjectsPage: NextPage = () => {
+const ProjectsPage = () => {
   return (
     <main>
       <h2>Projects Page</h2>
