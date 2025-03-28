@@ -5,8 +5,8 @@ interface MongoProjectEntity {
   name: string;
   slug: string;
   description: string;
-  imageUrl: string;
-  githubUrl: string;
+  imageUrl?: string;
+  githubUrl?: string;
   demoUrl?: string;
 }
 
