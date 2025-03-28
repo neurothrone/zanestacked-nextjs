@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@heroicons/react": "^2.2.0",
     "mongodb": "^6.14.2",
     "next": "^15.2.4",
     "postgres": "^3.4.5",
