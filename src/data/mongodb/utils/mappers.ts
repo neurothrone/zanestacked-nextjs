@@ -1,9 +1,9 @@
-import ProjectEntity from "@/src/data/mongodb/entities/project-entity";
+import MongoProjectEntity from "@/src/data/mongodb/entities/mongo-project-entity";
 import Project from "@/src/models/project";
-import SkillEntity from "@/src/data/mongodb/entities/skill-entity";
+import MongoSkillEntity from "@/src/data/mongodb/entities/mongo-skill-entity";
 import Skill from "@/src/models/skill";
 
-const mapProjectEntityToProject = (entity: ProjectEntity): Project => ({
+const mapProjectEntityToProject = (entity: MongoProjectEntity): Project => ({
   id: entity._id.toString(),
   slug: entity.slug,
   name: entity.name,
@@ -13,7 +13,7 @@ const mapProjectEntityToProject = (entity: ProjectEntity): Project => ({
   demoUrl: entity.demoUrl,
 });
 
-const mapSkillEntityToSkill = (entity: SkillEntity): Skill => ({
+const mapSkillEntityToSkill = (entity: MongoSkillEntity): Skill => ({
   id: entity._id.toString(),
   name: entity.name,
   yearsOfExperience: entity.yearsOfExperience,

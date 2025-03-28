@@ -1,6 +1,6 @@
 import { ObjectId } from "bson";
 
-interface SkillEntity {
+interface MongoSkillEntity {
   _id: ObjectId;
   name: string;
   yearsOfExperience: number;
@@ -8,4 +8,4 @@ interface SkillEntity {
   createdDate: string;
 }
 
-export default SkillEntity;
+export default MongoSkillEntity;

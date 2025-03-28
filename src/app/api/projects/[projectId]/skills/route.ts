@@ -1,6 +1,6 @@
 import { NextRequest } from "next/server";
 import { ObjectId } from "bson";
-import { connectToDatabase } from "@/src/data/mongodb/mongo-database";
+import { connectToDatabase } from "@/src/data/mongodb/database";
 import ProjectParams from "@/src/app/api/projects/ProjectParams";
 
 const GET = async (_: NextRequest, { params }: { params: ProjectParams }) => {

@@ -1,6 +1,6 @@
 import { NextRequest } from "next/server";
 import { ObjectId } from "bson";
-import { connectToDatabase } from "@/src/data/mongodb/mongo-database";
+import { connectToDatabase } from "@/src/data/mongodb/database";
 import InputSkillBody from "@/src/app/api/skills/InputSkillBody";
 
 type Params = {
