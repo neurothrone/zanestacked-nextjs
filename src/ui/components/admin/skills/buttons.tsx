@@ -2,7 +2,7 @@ import Link from "next/link";
 import { PencilIcon, PlusIcon, TrashIcon } from "@heroicons/react/24/outline";
 import { deleteSkill } from "@/src/lib/actions";
 
-const CreateSkill = () => {
+const CreateSkillButton = () => {
   return (
     <Link
       href="/admin/skills/create"
@@ -14,7 +14,7 @@ const CreateSkill = () => {
   );
 }
 
-const EditSkill = ({ id }: { id: string }) => {
+const EditSkillButton = ({ id }: { id: string }) => {
   return (
     <Link
       href={`/admin/skills/edit/${id}`}
@@ -25,7 +25,7 @@ const EditSkill = ({ id }: { id: string }) => {
   );
 }
 
-const DeleteSkill = ({ id }: { id: string }) => {
+const DeleteSkillButton = ({ id }: { id: string }) => {
   const deleteSkillWithId = deleteSkill.bind(null, id);
 
   return (
@@ -38,4 +38,4 @@ const DeleteSkill = ({ id }: { id: string }) => {
   );
 }
 
-export { CreateSkill, EditSkill, DeleteSkill };
+export { CreateSkillButton, EditSkillButton, DeleteSkillButton };
