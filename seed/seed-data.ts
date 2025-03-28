@@ -34,7 +34,7 @@ const seedProjects = async () => {
   await sql`
       CREATE TABLE IF NOT EXISTS projects (
           id          UUID      DEFAULT uuid_generate_v4() PRIMARY KEY,
-          name        VARCHAR(50)        NOT NULL,
+          title       VARCHAR(50)        NOT NULL,
           slug        VARCHAR(50) UNIQUE NOT NULL,
           description TEXT               NOT NULL,
           imageUrl    VARCHAR(255),
@@ -47,8 +47,8 @@ const seedProjects = async () => {
   return await Promise.all(
     projects.map(
       (p) => sql`
-          INSERT INTO projects (name, slug, description, imageUrl, githubUrl, demoUrl)
-          VALUES (${p.name}, ${p.slug}, ${p.description}, ${p.imageUrl ?? null}, ${p.githubUrl ?? null},
+          INSERT INTO projects (title, slug, description, imageUrl, githubUrl, demoUrl)
+          VALUES (${p.title}, ${p.slug}, ${p.description}, ${p.imageUrl ?? null}, ${p.githubUrl ?? null},
                   ${p.demoUrl ?? null})
           ON CONFLICT (id) DO NOTHING;
       `,

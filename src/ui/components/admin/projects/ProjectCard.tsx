@@ -1,4 +1,3 @@
-import React from "react";
 import Image from "next/image";
 
 import Project from "@/src/models/project";
@@ -11,8 +10,8 @@ const ProjectCard = ({ project }: ProjectCardProps) => {
   return (
     <div>
       <Image
-        src={project.imageUrl}
-        alt={project.name}
+        src={project.imageUrl ?? "https://picsum.photos/150"}
+        alt={project.title}
         width={150}
         height={150}
         sizes={"100vw"}
@@ -21,6 +20,7 @@ const ProjectCard = ({ project }: ProjectCardProps) => {
           objectFit: "cover",
         }}
       />
+      <h3>{project.title}</h3>
     </div>
   );
 };
