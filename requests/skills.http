@@ -1,0 +1,33 @@
+@BASE_URL = http://localhost:3000/api
+
+
+### Get all Skills
+GET {{BASE_URL}}/skills
+
+
+### Get Skill by SkillID
+GET {{BASE_URL}}/skills/67d9cbe3d98a0ac2e57ae53c
+
+
+### Add Skill
+POST {{BASE_URL}}/skills
+Content-Type: application/json
+
+{
+  "name": "TypeScript",
+  "yearsOfExperience": 1,
+  "proficiency": "Intermediate"
+}
+
+### Update Skill
+PUT {{BASE_URL}}/skills/67d9cbe3d98a0ac2e57ae53c
+Content-Type: application/json
+
+{
+  "name": "TypeScript",
+  "yearsOfExperience": 2,
+  "proficiency": "Intermediate"
+}
+
+### Delete Skill by SkillID
+DELETE {{BASE_URL}}/skills/67d9cbe3d98a0ac2e57ae53c

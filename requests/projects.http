@@ -1,0 +1,61 @@
+@BASE_URL = http://localhost:3000/api
+
+
+### Get all Projects
+GET {{BASE_URL}}/projects
+
+
+### Get Project by ProjectID
+GET {{BASE_URL}}/projects/67e1f38cc6b1233312dcdf9b
+
+
+### Add Project
+POST {{BASE_URL}}/projects
+Content-Type: application/json
+
+{
+  "name": "ZaneStacked",
+  "description": "Etc",
+  "imageUrl": "https://picsum.photos/200",
+  "githubUrl": "https://github.com",
+  "demoUrl": "https://demo.com"
+}
+
+
+### Update Project
+PUT {{BASE_URL}}/projects/67e1f38cc6b1233312dcdf9b
+Content-Type: application/json
+
+{
+  "name": "ZaneStacked 3.0",
+  "description": "Etc",
+  "imageUrl": "https://picsum.photos/200",
+  "githubUrl": "https://github.com",
+  "demoUrl": "https://demo.com"
+}
+
+
+### Delete Project by ProjectID
+DELETE {{BASE_URL}}/projects/67d9c25e523d955b88594006
+
+
+### GET request to fetch skills for a specific project
+GET {{BASE_URL}}/projects/67d9c25e523d955b88594006/skills
+
+
+### PUT request to add a skill to a specific project
+PUT {{BASE_URL}}/projects/67d9c25e523d955b88594006/skills
+Content-Type: application/json
+
+{
+  "skillId": "67d9aaf6112829e8abe10226"
+}
+
+
+### DELETE request to remove a skill from a specific project
+DELETE {{BASE_URL}}/projects/67d9c25e523d955b88594006/skills
+Content-Type: application/json
+
+{
+  "skillId": "67d9aaf6112829e8abe10226"
+}
