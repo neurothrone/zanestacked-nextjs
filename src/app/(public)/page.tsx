@@ -1,6 +1,6 @@
 import { Metadata, NextPage } from "next";
-import PrimaryButton from "@/src/components/public/PrimaryButton";
-import ZaneHero from "@/src/components/public/ZaneHero";
+import PrimaryButton from "@/src/ui/components/public/PrimaryButton";
+import ZaneHero from "@/src/ui/components/public/ZaneHero";
 // import SkillList from "@/src/components/public/SkillList";
 // import ProjectList from "@/src/components/public/ProjectList";
 

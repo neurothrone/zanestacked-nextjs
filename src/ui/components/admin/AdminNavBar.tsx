@@ -1,10 +1,10 @@
 import Link from "next/link";
-import styles from "@/src/components/admin/AdminNavBar.module.css";
+import styles from "@/src/ui/components/admin/AdminNavBar.module.css";
 
 const AdminNavBar = () => {
   return (
     <div>
-      <Link href="/" className={styles.customLink}>Home</Link>
+      <Link href="/src/ui/components/public" className={styles.customLink}>Home</Link>
       <Link href="/admin" className={styles.customLink}>Dashboard</Link>
       <Link href="/admin/projects" className={styles.customLink}>Projects</Link>
       <Link href="/admin/skills" className={styles.customLink}>Skills</Link>

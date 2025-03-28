@@ -1,5 +1,5 @@
 import { Metadata, NextPage } from "next";
-import ProjectList from "@/src/components/projects/ProjectList";
+import ProjectList from "@/src/ui/components/admin/projects/ProjectList";
 
 export const metadata: Metadata = {
   title: "Projects",

@@ -1,4 +1,4 @@
-import AdminNavBar from "@/src/components/admin/AdminNavBar";
+import AdminNavBar from "@/src/ui/components/admin/AdminNavBar";
 
 const AdminLayout = ({
   children

@@ -1,5 +1,5 @@
 import { Metadata, NextPage } from "next";
-import SkillList from "@/src/components/admin/skills/SkillList";
+import SkillList from "@/src/ui/components/admin/skills/SkillList";
 
 export const metadata: Metadata = {
   title: "Skills",
