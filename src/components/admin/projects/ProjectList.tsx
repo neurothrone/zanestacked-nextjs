@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Project from "@/src/models/project";
-import ProjectCard from "@/src/components/projects/ProjectCard";
+import ProjectCard from "@/src/components/admin/projects/ProjectCard";
 
 const ProjectList = () => {
   const [projects, setProjects] = useState<Project[]>([]);
