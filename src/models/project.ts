@@ -6,6 +6,7 @@ interface Project {
   imageUrl?: string;
   githubUrl?: string;
   demoUrl?: string;
+  createdAt: Date;
 }
 
 export default Project;

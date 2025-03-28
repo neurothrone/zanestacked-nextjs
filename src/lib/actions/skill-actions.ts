@@ -37,7 +37,7 @@ export async function createSkill(prevState: SkillFormState, formData: FormData)
 
   try {
     await sql`
-        INSERT INTO skills (name, yearsOfExperience, proficiency)
+        INSERT INTO skills (name, years_of_experience, proficiency)
         VALUES (${name}, ${yearsOfExperience}, ${proficiency})
     `;
   } catch (error) {
@@ -75,7 +75,7 @@ export async function updateSkill(
     await sql`
         UPDATE skills
         SET name              = ${name},
-            yearsOfExperience = ${yearsOfExperience},
+            years_of_experience = ${yearsOfExperience},
             proficiency       = ${proficiency}
         WHERE
             id = ${id}
