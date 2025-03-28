@@ -9,6 +9,8 @@ const SkillList = async () => {
       {skills.map((skill) => (
         <li key={skill.id}>
           <h3>{skill.name}</h3>
+          <p>{skill.yearsOfExperience} years</p>
+          <p>{skill.proficiency}</p>
           <div className="flex justify-end gap-2">
             <EditSkillButton id={skill.id}/>
             <DeleteSkillButton id={skill.id}/>
