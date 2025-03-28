@@ -6,7 +6,7 @@ import Skill from "@/src/models/skill";
 const mapProjectEntityToProject = (entity: MongoProjectEntity): Project => ({
   id: entity._id.toString(),
   slug: entity.slug,
-  name: entity.name,
+  title: entity.title,
   description: entity.description,
   imageUrl: entity.imageUrl,
   githubUrl: entity.githubUrl,
@@ -18,7 +18,6 @@ const mapSkillEntityToSkill = (entity: MongoSkillEntity): Skill => ({
   name: entity.name,
   yearsOfExperience: entity.yearsOfExperience,
   proficiency: entity.proficiency,
-  createdDate: entity.createdDate,
 });
 
 export { mapProjectEntityToProject, mapSkillEntityToSkill };

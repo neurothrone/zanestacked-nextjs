@@ -44,7 +44,7 @@ const ProjectList = () => {
             key={project.id}
             className="p-6 bg-gray-800 text-white rounded-xl shadow-lg"
           >
-            <h3 className="text-2xl font-semibold mb-2">{project.name}</h3>
+            <h3 className="text-2xl font-semibold mb-2">{project.title}</h3>
             <p className="mb-4 text-gray-300">{project.description}</p>
             <a
               href={project.githubUrl}

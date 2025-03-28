@@ -2,7 +2,7 @@ import { ObjectId } from "bson";
 
 interface MongoProjectEntity {
   _id: ObjectId;
-  name: string;
+  title: string;
   slug: string;
   description: string;
   imageUrl?: string;
