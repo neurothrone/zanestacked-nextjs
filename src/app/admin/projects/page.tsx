@@ -1,6 +1,6 @@
 import { Suspense } from "react";
 import { Metadata } from "next";
-import Projects from "@/src/ui/components/admin/projects/Projects";
+import ProjectList from "@/src/ui/components/admin/projects/ProjectList";
 import Link from "next/link";
 
 export const metadata: Metadata = {
@@ -14,7 +14,7 @@ const ProjectsPage = () => {
       <hr/>
       <Link href="/admin/projects/create" className="text-purple-400 hover:text-purple-500">Add Project</Link>
       <Suspense fallback={<h3>Loading...</h3>}>
-        <Projects/>
+        <ProjectList/>
       </Suspense>
     </main>
   );
