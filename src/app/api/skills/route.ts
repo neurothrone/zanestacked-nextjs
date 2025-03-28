@@ -1,9 +1,9 @@
-import { connectToDatabase } from "@/src/data/mongo-database";
+import { connectToDatabase } from "@/src/data/mongodb/mongo-database";
 import { NextRequest } from "next/server";
 import InputSkillBody from "@/src/app/api/skills/InputSkillBody";
 import Skill from "@/src/models/skill";
-import SkillEntity from "@/src/data/entities/skill-entity";
-import { mapSkillEntityToSkill } from "@/src/data/utils/mappers";
+import SkillEntity from "@/src/data/mongodb/entities/skill-entity";
+import { mapSkillEntityToSkill } from "@/src/data/mongodb/utils/mappers";
 
 const GET = async () => {
   const { db } = await connectToDatabase();

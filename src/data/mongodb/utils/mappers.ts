@@ -1,6 +1,6 @@
-import ProjectEntity from "@/src/data/entities/project-entity";
+import ProjectEntity from "@/src/data/mongodb/entities/project-entity";
 import Project from "@/src/models/project";
-import SkillEntity from "@/src/data/entities/skill-entity";
+import SkillEntity from "@/src/data/mongodb/entities/skill-entity";
 import Skill from "@/src/models/skill";
 
 const mapProjectEntityToProject = (entity: ProjectEntity): Project => ({

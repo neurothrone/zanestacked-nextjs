@@ -1,6 +1,6 @@
 import { NextRequest } from "next/server";
 import { ObjectId } from "bson";
-import { connectToDatabase } from "@/src/data/mongo-database";
+import { connectToDatabase } from "@/src/data/mongodb/mongo-database";
 import InputProjectBody from "@/src/app/api/projects/InputProjectBody";
 import ProjectParams from "@/src/app/api/projects/ProjectParams";
 import slugify from "slugify";

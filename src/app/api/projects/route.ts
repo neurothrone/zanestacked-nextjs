@@ -1,9 +1,9 @@
 import { NextRequest } from "next/server";
-import { connectToDatabase } from "@/src/data/mongo-database";
+import { connectToDatabase } from "@/src/data/mongodb/mongo-database";
 import InputProjectBody from "@/src/app/api/projects/InputProjectBody";
 import Project from "@/src/models/project";
-import ProjectEntity from "@/src/data/entities/project-entity";
-import { mapProjectEntityToProject } from "@/src/data/utils/mappers";
+import ProjectEntity from "@/src/data/mongodb/entities/project-entity";
+import { mapProjectEntityToProject } from "@/src/data/mongodb/utils/mappers";
 import slugify from "slugify";
 
 const GET = async () => {
