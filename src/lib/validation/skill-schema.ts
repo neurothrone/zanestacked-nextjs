@@ -14,9 +14,11 @@ const SkillSchema = z.object({
     .int("Must be an integer.")
     .min(1, "Please enter at least 1 year of experience.")
     .lte(50, "Too experienced... are you immortal?"),
-  proficiency: z.enum(["Beginner", "Intermediate", "Advanced", "Expert"], {
-    invalid_type_error: "Please select a valid proficiency level.",
-  }),
+  proficiency: z
+    .string()
+    .refine((val) => ["Beginner", "Intermediate", "Advanced", "Expert"].includes(val), {
+      message: "Please select a proficiency level.",
+    }),
 });
 
 export default SkillSchema;

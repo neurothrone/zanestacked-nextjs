@@ -1,25 +1,22 @@
 "use client";
 
 import Link from "next/link";
-import { useActionState } from "react";
+import { useActionState, useState } from "react";
 import {
   PencilIcon,
   ClockIcon,
-  StarIcon,
 } from "@heroicons/react/24/outline";
 import { createSkill, SkillFormState } from "@/src/lib/actions/skill-actions";
 import { Button } from "@/src/ui/components/Button";
+import ProficiencySegmentedControl from "@/src/ui/components/admin/skills/ProficiencySegmentedControl";
 
 const CreateSkillForm = () => {
   const initialState: SkillFormState = { message: null, errors: {} };
   const [state, formAction] = useActionState(createSkill, initialState);
 
-  const proficiencies = [
-    { id: "Beginner", name: "Beginner" },
-    { id: "Intermediate", name: "Intermediate" },
-    { id: "Advanced", name: "Advanced" },
-    { id: "Expert", name: "Expert" },
-  ];
+  const [name, setName] = useState("");
+  const [yearsOfExperience, setYearsOfExperience] = useState("");
+  const [proficiency, setProficiency] = useState("");
 
   return (
     <form action={formAction}>
@@ -37,6 +34,8 @@ const CreateSkillForm = () => {
               placeholder="Enter name for skill"
               className="peer block w-full rounded-md border border-gray-700 bg-gray-800 py-2 pl-10 text-sm text-white placeholder:text-gray-500 outline-none focus:ring-2 focus:ring-indigo-500"
               aria-describedby="name-error"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
             />
             <PencilIcon
               className="pointer-events-none absolute left-3 top-1/2 h-[18px] w-[18px] -translate-y-1/2 text-gray-400 peer-focus:text-white"/>
@@ -62,6 +61,8 @@ const CreateSkillForm = () => {
               placeholder="Enter experience in years"
               className="peer block w-full rounded-md border border-gray-700 bg-gray-800 py-2 pl-10 text-sm text-white placeholder:text-gray-500 outline-none focus:ring-2 focus:ring-indigo-500"
               aria-describedby="yearsOfExperience-error"
+              value={yearsOfExperience}
+              onChange={(e) => setYearsOfExperience(e.target.value)}
             />
             <ClockIcon
               className="pointer-events-none absolute left-3 top-1/2 h-[18px] w-[18px] -translate-y-1/2 text-gray-400 peer-focus:text-white"/>
@@ -79,24 +80,11 @@ const CreateSkillForm = () => {
             Proficiency
           </label>
           <div className="relative">
-            <select
-              id="proficiency"
-              name="proficiency"
-              className="peer block w-full cursor-pointer rounded-md border border-gray-700 bg-gray-800 py-2 pl-10 text-sm text-white outline-none focus:ring-2 focus:ring-indigo-500"
-              defaultValue=""
-              aria-describedby="proficiency-error"
-            >
-              <option value="" disabled>
-                Select a Proficiency
-              </option>
-              {proficiencies.map((proficiency) => (
-                <option key={proficiency.id} value={proficiency.id}>
-                  {proficiency.name}
-                </option>
-              ))}
-            </select>
-            <StarIcon
-              className="pointer-events-none absolute left-3 top-1/2 h-[18px] w-[18px] -translate-y-1/2 text-gray-400 peer-focus:text-white"/>
+            <ProficiencySegmentedControl
+              selected={proficiency}
+              onChange={setProficiency}
+            />
+            <input type="hidden" name="proficiency" value={proficiency}/>
           </div>
           {state.errors?.proficiency?.map((error: string) => (
             <p className="mt-2 text-sm text-red-400" key={error}>
