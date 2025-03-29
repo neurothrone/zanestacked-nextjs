@@ -3,8 +3,13 @@ export type PostgresProjectEntity = {
   title: string;
   slug: string;
   description: string;
-  image_url?: string;
-  github_url?: string;
-  demo_url?: string;
+  image_url?: string | null;
+  github_url?: string | null;
+  demo_url?: string | null;
   created_at: Date;
+};
+
+export type PostgresProjectSkillEntity = {
+  project_id: string;
+  skill_id: string;
 };

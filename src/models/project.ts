@@ -1,4 +1,4 @@
-interface Project {
+export type Project = {
   id: string;
   title: string;
   slug: string;
@@ -7,6 +7,5 @@ interface Project {
   githubUrl?: string;
   demoUrl?: string;
   createdAt: Date;
-}
-
-export default Project;
+  skillIds: string[];
+};
