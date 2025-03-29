@@ -7,9 +7,5 @@ export type PostgresProjectEntity = {
   github_url?: string | null;
   demo_url?: string | null;
   created_at: Date;
-};
-
-export type PostgresProjectSkillEntity = {
-  project_id: string;
-  skill_id: string;
+  skill_count: number;
 };

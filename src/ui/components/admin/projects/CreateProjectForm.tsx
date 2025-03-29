@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useActionState } from "react";
+import { useState } from "react";
 import {
   PencilIcon,
   PhotoIcon,
@@ -12,11 +13,17 @@ import {
 import { createProject, ProjectFormState } from "@/src/lib/actions/project-actions";
 import { Button } from "@/src/ui/components/Button";
 import MultiSkillSelect from "@/src/ui/components/admin/projects/MultiSkillSelect";
+import Skill from "@/src/models/skill";
 
-// const CreateProjectForm = () => {
-const CreateProjectForm = ({ skills }: { skills: { id: string; name: string }[] }) => {
+const CreateProjectForm = ({ skills }: { skills: Skill[] }) => {
   const initialState: ProjectFormState = { message: null, errors: {} };
   const [state, formAction] = useActionState(createProject, initialState);
+
+  const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
+  const [imageUrl, setImageUrl] = useState("");
+  const [githubUrl, setGithubUrl] = useState("");
+  const [demoUrl, setDemoUrl] = useState("");
 
   return (
     <form action={formAction}>
@@ -34,6 +41,8 @@ const CreateProjectForm = ({ skills }: { skills: { id: string; name: string }[] 
               placeholder="Enter project title"
               className="peer block w-full rounded-md border border-gray-700 bg-gray-800 py-2 pl-10 text-sm text-white placeholder:text-gray-500 outline-none focus:ring-2 focus:ring-indigo-500"
               aria-describedby="title-error"
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
             />
             <PencilIcon
               className="pointer-events-none absolute left-3 top-1/2 h-[18px] w-[18px] -translate-y-1/2 text-gray-400 peer-focus:text-white"/>
@@ -56,6 +65,8 @@ const CreateProjectForm = ({ skills }: { skills: { id: string; name: string }[] 
               rows={4}
               className="peer block w-full rounded-md border border-gray-700 bg-gray-800 py-2 pl-10 pr-4 text-sm text-white placeholder:text-gray-500 outline-none focus:ring-2 focus:ring-indigo-500"
               aria-describedby="description-error"
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
             />
             <ChatBubbleBottomCenterTextIcon
               className="pointer-events-none absolute left-3 top-4 h-[18px] w-[18px] text-gray-400 peer-focus:text-white"/>
@@ -78,6 +89,8 @@ const CreateProjectForm = ({ skills }: { skills: { id: string; name: string }[] 
               placeholder="https://example.com/image.jpg"
               className="peer block w-full rounded-md border border-gray-700 bg-gray-800 py-2 pl-10 text-sm text-white placeholder:text-gray-500 outline-none focus:ring-2 focus:ring-indigo-500"
               aria-describedby="imageUrl-error"
+              value={imageUrl}
+              onChange={(e) => setImageUrl(e.target.value)}
             />
             <PhotoIcon
               className="pointer-events-none absolute left-3 top-1/2 h-[18px] w-[18px] -translate-y-1/2 text-gray-400 peer-focus:text-white"/>
@@ -100,6 +113,8 @@ const CreateProjectForm = ({ skills }: { skills: { id: string; name: string }[] 
               placeholder="https://github.com/your-repo"
               className="peer block w-full rounded-md border border-gray-700 bg-gray-800 py-2 pl-10 text-sm text-white placeholder:text-gray-500 outline-none focus:ring-2 focus:ring-indigo-500"
               aria-describedby="githubUrl-error"
+              value={githubUrl}
+              onChange={(e) => setGithubUrl(e.target.value)}
             />
             <CodeBracketIcon
               className="pointer-events-none absolute left-3 top-1/2 h-[18px] w-[18px] -translate-y-1/2 text-gray-400 peer-focus:text-white"/>
@@ -122,6 +137,8 @@ const CreateProjectForm = ({ skills }: { skills: { id: string; name: string }[] 
               placeholder="https://example.com/demo"
               className="peer block w-full rounded-md border border-gray-700 bg-gray-800 py-2 pl-10 text-sm text-white placeholder:text-gray-500 outline-none focus:ring-2 focus:ring-indigo-500"
               aria-describedby="demoUrl-error"
+              value={demoUrl}
+              onChange={(e) => setDemoUrl(e.target.value)}
             />
             <CursorArrowRaysIcon
               className="pointer-events-none absolute left-3 top-1/2 h-[18px] w-[18px] -translate-y-1/2 text-gray-400 peer-focus:text-white"/>

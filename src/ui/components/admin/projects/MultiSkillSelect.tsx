@@ -3,21 +3,17 @@
 import { useState } from "react";
 import { Combobox } from "@headlessui/react";
 import { CheckIcon, ChevronUpDownIcon } from "@heroicons/react/20/solid";
-
-type Skill = {
-  id: string;
-  name: string;
-};
+import Skill from "@/src/models/skill";
 
 type Props = {
   skills: Skill[];
   name?: string;
-  defaultSelected?: string[];
+  defaultSelected?: Skill[];
 };
 
 const MultiSkillSelect = ({ skills, name = "skills", defaultSelected = [] }: Props) => {
   const [query, setQuery] = useState("");
-  const [selected, setSelected] = useState<string[]>(defaultSelected);
+  const [selected, setSelected] = useState<Skill[]>(defaultSelected);
 
   const filteredSkills =
     query === ""
@@ -28,12 +24,11 @@ const MultiSkillSelect = ({ skills, name = "skills", defaultSelected = [] }: Pro
 
   return (
     <>
-      <input
-        type="hidden"
-        name={name}
-        value={selected.join(",")}
-        readOnly
-      />
+      {selected
+        .filter((skill) => !!skill.id)
+        .map((skill) => (
+          <input key={skill.id} type="hidden" name={name} value={skill.id} />
+        ))}
       <Combobox value={selected} onChange={setSelected} multiple>
         <div className="relative">
           <div
@@ -42,7 +37,7 @@ const MultiSkillSelect = ({ skills, name = "skills", defaultSelected = [] }: Pro
               className="w-full bg-transparent border-none focus:ring-0 text-white placeholder-gray-400"
               onChange={(event) => setQuery(event.target.value)}
               displayValue={() =>
-                selected.map(id => skills.find(s => s.id === id)?.name || "").join(", ")
+                selected.map(selectedSkill => selectedSkill.name).join(", ")
               }
               placeholder="Search and select skills"
             />
@@ -56,7 +51,7 @@ const MultiSkillSelect = ({ skills, name = "skills", defaultSelected = [] }: Pro
             {filteredSkills.map((skill) => (
               <Combobox.Option
                 key={skill.id}
-                value={skill.id}
+                value={skill}
                 className={({ active }) =>
                   `relative cursor-default select-none py-2 pl-10 pr-4 ${
                     active ? "bg-indigo-600 text-white" : "text-gray-200"

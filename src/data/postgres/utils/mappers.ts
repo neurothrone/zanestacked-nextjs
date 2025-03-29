@@ -1,7 +1,7 @@
 import { PostgresSkillEntity } from "@/src/data/postgres/entities/postgres-skill-entity";
 import { PostgresProjectEntity } from "@/src/data/postgres/entities/postgres-project-entity";
-import Skill from "@/src/models/skill";
 import Project from "@/src/models/project";
+import Skill from "@/src/models/skill";
 
 export function mapEntityToSkill(entity: PostgresSkillEntity): Skill {
   return {
@@ -23,5 +23,6 @@ export function mapEntityToProject(entity: PostgresProjectEntity): Project {
     githubUrl: entity.github_url ?? undefined,
     demoUrl: entity.demo_url ?? undefined,
     createdAt: entity.created_at,
+    skillCount: entity.skill_count
   };
 }

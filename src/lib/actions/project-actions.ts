@@ -4,11 +4,12 @@ import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import postgres from "postgres";
 import ProjectSchema from "@/src/lib/validation/project-schema";
+import slugify from "slugify";
 
 const sql = postgres(process.env.POSTGRES_URL!, { ssl: "require" });
 
-const CreateProject = ProjectSchema.omit({ id: true });
-const UpdateProject = ProjectSchema.omit({ id: true });
+const CreateProject = ProjectSchema.omit({ id: true, slug: true });
+const UpdateProject = ProjectSchema.omit({ id: true, slug: true });
 
 export type ProjectFormState = {
   errors?: {
@@ -21,7 +22,10 @@ export type ProjectFormState = {
   message?: string | null;
 };
 
-export async function createProject(prevState: ProjectFormState, formData: FormData) {
+export async function createProject(
+  prevState: ProjectFormState,
+  formData: FormData
+) {
   const validatedFields = CreateProject.safeParse({
     title: formData.get("title"),
     description: formData.get("description"),
@@ -31,6 +35,7 @@ export async function createProject(prevState: ProjectFormState, formData: FormD
   });
 
   if (!validatedFields.success) {
+    console.log("Validation failed:", validatedFields.error.flatten().fieldErrors);
     return {
       errors: validatedFields.error.flatten().fieldErrors,
       message: "Missing Fields. Failed to create Project.",
@@ -38,23 +43,22 @@ export async function createProject(prevState: ProjectFormState, formData: FormD
   }
 
   const { title, description, imageUrl, githubUrl, demoUrl } = validatedFields.data;
-  const skillsRaw = formData.get("skills");
-  const skillIds = typeof skillsRaw === "string" ? skillsRaw.split(",") : [];
+  const skillIds = formData.getAll("skills") as string[];
 
   try {
-    // await sql`
-    //     INSERT INTO projects (title, description, image_url, github_url, demo_url)
-    //     VALUES (${title},
-    //             ${description},
-    //             ${imageUrl ?? null},
-    //             ${githubUrl ?? null},
-    //             ${demoUrl ?? null})
-    // `;
     const inserted = await sql`
-        INSERT INTO projects (title, description, image_url, github_url, demo_url)
-        VALUES (${title}, ${description}, ${imageUrl ?? null}, ${githubUrl ?? null}, ${demoUrl ?? null})
+        INSERT INTO projects (title, slug, description, image_url, github_url, demo_url)
+        VALUES (${title}, ${slugify(title)}, ${description}, ${imageUrl ?? null}, ${githubUrl ?? null},
+                ${demoUrl ?? null})
         RETURNING id
     `;
+
+    if (!inserted.length) {
+      return {
+        message: "Database Error: Project was not created.",
+      };
+    }
+
     const projectId = inserted[0].id;
 
     for (const skillId of skillIds) {
@@ -72,6 +76,7 @@ export async function createProject(prevState: ProjectFormState, formData: FormD
   }
 
   revalidatePath("/admin/projects");
+  console.log("Redirecting to /admin/projects...");
   redirect("/admin/projects");
 }
 
@@ -101,6 +106,7 @@ export async function updateProject(
     await sql`
         UPDATE projects
         SET title       = ${title},
+            slug        = ${slugify(title)},
             description = ${description},
             image_url   = ${imageUrl ?? null},
             github_url  = ${githubUrl ?? null},

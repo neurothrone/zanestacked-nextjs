@@ -1,4 +1,4 @@
-export type Project = {
+type Project = {
   id: string;
   title: string;
   slug: string;
@@ -7,5 +7,7 @@ export type Project = {
   githubUrl?: string;
   demoUrl?: string;
   createdAt: Date;
-  skillIds: string[];
+  skillCount: number;
 };
+
+export default Project;

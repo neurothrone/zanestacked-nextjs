@@ -39,10 +39,40 @@ export async function fetchProjects() {
   try {
     const data = await sql<PostgresProjectEntity[]>`
         SELECT
-            *
-        FROM projects
+            p.*,
+            COUNT(ps.skill_id) ::int AS skill_count
+        FROM projects            p
+        LEFT JOIN project_skills ps
+                  ON ps.project_id = p.id
+        GROUP BY
+            p.id
     `;
     return data.map(mapEntityToProject);
+  } catch (error) {
+    console.error("Database Error:", error);
+    throw new Error("Failed to fetch projects.");
+  }
+}
+
+export async function fetchProjectWithSkillsById(projectId: string) {
+  try {
+    const data = await sql<PostgresProjectEntity[]>`
+        SELECT
+            p.*,
+            s.id   AS skill_id,
+            s.name AS skill_name,
+            s.years_of_experience
+        FROM projects       p
+        JOIN project_skills ps
+             ON ps.project_id = p.id
+        JOIN skills         s
+             ON s.id = ps.skill_id
+        WHERE
+            p.id = ${projectId}
+        ORDER BY
+            s.years_of_experience DESC
+    `;
+    return data.length ? mapEntityToProject(data[0]) : null;
   } catch (error) {
     console.error("Database Error:", error);
     throw new Error("Failed to fetch projects.");
@@ -62,5 +92,23 @@ export async function fetchProjectById(id: string) {
   } catch (error) {
     console.error("Database Error:", error);
     throw new Error("Failed to fetch project.");
+  }
+}
+
+export async function fetchSkillsForProject(projectId: string) {
+  try {
+    const data = await sql<PostgresSkillEntity[]>`
+        SELECT
+            s.*
+        FROM skills               s
+        INNER JOIN project_skills ps
+                   ON ps.skill_id = s.id
+        WHERE
+            ps.project_id = ${projectId};
+    `;
+    return data.map(mapEntityToSkill);
+  } catch (error) {
+    console.error("Database Error:", error);
+    throw new Error("Failed to fetch skills for project.");
   }
 }
