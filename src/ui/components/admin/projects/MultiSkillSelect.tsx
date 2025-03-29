@@ -5,13 +5,18 @@ import { Combobox } from "@headlessui/react";
 import { CheckIcon, ChevronUpDownIcon } from "@heroicons/react/20/solid";
 import Skill from "@/src/models/skill";
 
-type Props = {
+type MultiSkillSelectProps = {
   skills: Skill[];
   name?: string;
   defaultSelected?: Skill[];
 };
 
-const MultiSkillSelect = ({ skills, name = "skills", defaultSelected = [] }: Props) => {
+const MultiSkillSelect = ({
+    skills,
+    name = "skills",
+    defaultSelected = []
+  }: MultiSkillSelectProps
+) => {
   const [query, setQuery] = useState("");
   const [selected, setSelected] = useState<Skill[]>(defaultSelected);
 
@@ -27,7 +32,7 @@ const MultiSkillSelect = ({ skills, name = "skills", defaultSelected = [] }: Pro
       {selected
         .filter((skill) => !!skill.id)
         .map((skill) => (
-          <input key={skill.id} type="hidden" name={name} value={skill.id} />
+          <input key={skill.id} type="hidden" name={name} value={skill.id}/>
         ))}
       <Combobox value={selected} onChange={setSelected} multiple>
         <div className="relative">
