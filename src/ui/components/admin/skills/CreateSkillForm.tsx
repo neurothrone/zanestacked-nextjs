@@ -104,13 +104,6 @@ const CreateSkillForm = () => {
             </p>
           ))}
         </div>
-
-        {/* Message */}
-        {state.message && (
-          <div className="mt-2 text-sm text-red-400" aria-live="polite">
-            {state.message}
-          </div>
-        )}
       </div>
 
       {/* Buttons */}

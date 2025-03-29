@@ -27,80 +27,68 @@ const EditSkillForm = ({ skill }: { skill: Skill }) => {
 
   return (
     <form action={formAction}>
-      <div className="rounded-md bg-gray-300 p-4 md:p-6">
+      <div className="rounded-md bg-gray-900 p-4 md:p-6 text-white">
         {/* Skill Name */}
         <div className="mb-4">
-          <label htmlFor="name" className="mb-2 block text-sm font-medium">
+          <label htmlFor="name" className="mb-2 block text-sm font-medium text-gray-300">
             Name
           </label>
           <div className="relative mt-2 rounded-md">
-            <div className="relative">
-              <input
-                id="name"
-                name="name"
-                type="text"
-                placeholder="Enter name for skill"
-                defaultValue={skill.name}
-                className="peer block w-full rounded-md border border-gray-200 py-2 pl-10 text-sm outline-2 placeholder:text-gray-500"
-                aria-describedby="name-error"
-              />
-              <PencilIcon
-                className="pointer-events-none absolute left-3 top-1/2 h-[18px] w-[18px] -translate-y-1/2 text-gray-500 peer-focus:text-gray-900"/>
-            </div>
+            <input
+              id="name"
+              name="name"
+              type="text"
+              placeholder="Enter name for skill"
+              defaultValue={skill.name}
+              className="peer block w-full rounded-md border border-gray-700 bg-gray-800 py-2 pl-10 text-sm text-white placeholder:text-gray-500 outline-none focus:ring-2 focus:ring-indigo-500"
+              aria-describedby="name-error"
+            />
+            <PencilIcon
+              className="pointer-events-none absolute left-3 top-1/2 h-[18px] w-[18px] -translate-y-1/2 text-gray-400 peer-focus:text-white"/>
           </div>
-
-          <div id="name-error" aria-live="polite" aria-atomic="true">
-            {state.errors?.name &&
-              state.errors.name.map((error: string) => (
-                <p className="mt-2 text-sm text-red-500" key={error}>
-                  {error}
-                </p>
-              ))}
-          </div>
+          {state.errors?.name?.map((error: string) => (
+            <p className="mt-2 text-sm text-red-400" key={error}>
+              {error}
+            </p>
+          ))}
         </div>
 
-        {/* Skill Years of Experience */}
+        {/* Years of Experience */}
         <div className="mb-4">
-          <label htmlFor="yearsOfExperience" className="mb-2 block text-sm font-medium">
+          <label htmlFor="yearsOfExperience" className="mb-2 block text-sm font-medium text-gray-300">
             Years of Experience
           </label>
           <div className="relative mt-2 rounded-md">
-            <div className="relative">
-              <input
-                id="yearsOfExperience"
-                name="yearsOfExperience"
-                type="number"
-                step="1"
-                defaultValue={skill.yearsOfExperience}
-                placeholder="Enter experience in years"
-                className="peer block w-full rounded-md border border-gray-200 py-2 pl-10 text-sm outline-2 placeholder:text-gray-500"
-                aria-describedby="yearsOfExperience-error"
-              />
-              <ClockIcon
-                className="pointer-events-none absolute left-3 top-1/2 h-[18px] w-[18px] -translate-y-1/2 text-gray-500 peer-focus:text-gray-900"/>
-            </div>
+            <input
+              id="yearsOfExperience"
+              name="yearsOfExperience"
+              type="number"
+              step="1"
+              defaultValue={skill.yearsOfExperience}
+              placeholder="Enter experience in years"
+              className="peer block w-full rounded-md border border-gray-700 bg-gray-800 py-2 pl-10 text-sm text-white placeholder:text-gray-500 outline-none focus:ring-2 focus:ring-indigo-500"
+              aria-describedby="yearsOfExperience-error"
+            />
+            <ClockIcon
+              className="pointer-events-none absolute left-3 top-1/2 h-[18px] w-[18px] -translate-y-1/2 text-gray-400 peer-focus:text-white"/>
           </div>
-
-          <div id="yearsOfExperience-error" aria-live="polite" aria-atomic="true">
-            {state.errors?.yearsOfExperience &&
-              state.errors.yearsOfExperience.map((error: string) => (
-                <p className="mt-2 text-sm text-red-500" key={error}>
-                  {error}
-                </p>
-              ))}
-          </div>
+          {state.errors?.yearsOfExperience?.map((error: string) => (
+            <p className="mt-2 text-sm text-red-400" key={error}>
+              {error}
+            </p>
+          ))}
         </div>
 
-        {/* Skill Proficiency */}
+        {/* Proficiency */}
         <div className="mb-4">
-          <label htmlFor="proficiency" className="mb-2 block text-sm font-medium">
+          <label htmlFor="proficiency" className="mb-2 block text-sm font-medium text-gray-300">
             Proficiency
           </label>
           <div className="relative">
             <select
               id="proficiency"
               name="proficiency"
-              className="peer block w-full cursor-pointer rounded-md border border-gray-200 py-2 pl-10 text-sm outline-2 placeholder:text-gray-500"
+              className="peer block w-full cursor-pointer rounded-md border border-gray-700 bg-gray-800 py-2 pl-10 text-sm text-white outline-none focus:ring-2 focus:ring-indigo-500"
               defaultValue={skill.proficiency}
               aria-describedby="proficiency-error"
             >
@@ -114,23 +102,21 @@ const EditSkillForm = ({ skill }: { skill: Skill }) => {
               ))}
             </select>
             <StarIcon
-              className="pointer-events-none absolute left-3 top-1/2 h-[18px] w-[18px] -translate-y-1/2 text-gray-500"/>
+              className="pointer-events-none absolute left-3 top-1/2 h-[18px] w-[18px] -translate-y-1/2 text-gray-400 peer-focus:text-white"/>
           </div>
-
-          <div id="customer-error" aria-live="polite" aria-atomic="true">
-            {state.errors?.proficiency &&
-              state.errors.proficiency.map((error: string) => (
-                <p className="mt-2 text-sm text-red-500" key={error}>
-                  {error}
-                </p>
-              ))}
-          </div>
+          {state.errors?.proficiency?.map((error: string) => (
+            <p className="mt-2 text-sm text-red-400" key={error}>
+              {error}
+            </p>
+          ))}
         </div>
       </div>
+
+      {/* Buttons */}
       <div className="mt-6 flex justify-end gap-4">
         <Link
           href="/admin/skills"
-          className="flex h-10 items-center rounded-lg bg-gray-100 px-4 text-sm font-medium text-gray-600 transition-colors hover:bg-gray-200"
+          className="flex h-10 items-center rounded-lg bg-gray-700 px-4 text-sm font-medium text-gray-300 transition-colors hover:bg-gray-600"
         >
           Cancel
         </Link>
@@ -138,6 +124,6 @@ const EditSkillForm = ({ skill }: { skill: Skill }) => {
       </div>
     </form>
   );
-}
+};
 
 export default EditSkillForm;
