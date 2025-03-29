@@ -32,6 +32,7 @@ const CreateSkillForm = () => {
               name="name"
               type="text"
               placeholder="Enter name for skill"
+              autoComplete="off"
               className="peer block w-full rounded-md border border-gray-700 bg-gray-800 py-2 pl-10 text-sm text-white placeholder:text-gray-500 outline-none focus:ring-2 focus:ring-indigo-500"
               aria-describedby="name-error"
               value={name}
@@ -57,6 +58,7 @@ const CreateSkillForm = () => {
               id="yearsOfExperience"
               name="yearsOfExperience"
               placeholder="Enter experience in years"
+              autoComplete="off"
               className="peer block w-full rounded-md border border-gray-700 bg-gray-800 py-2 pl-10 text-sm text-white placeholder:text-gray-500 outline-none focus:ring-2 focus:ring-indigo-500"
               aria-describedby="yearsOfExperience-error"
               value={yearsOfExperience}

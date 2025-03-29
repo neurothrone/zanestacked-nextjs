@@ -39,6 +39,7 @@ const CreateProjectForm = ({ skills }: { skills: Skill[] }) => {
               name="title"
               type="text"
               placeholder="Enter project title"
+              autoComplete="off"
               className="peer block w-full rounded-md border border-gray-700 bg-gray-800 py-2 pl-10 text-sm text-white placeholder:text-gray-500 outline-none focus:ring-2 focus:ring-indigo-500"
               aria-describedby="title-error"
               value={title}
@@ -87,6 +88,7 @@ const CreateProjectForm = ({ skills }: { skills: Skill[] }) => {
               name="imageUrl"
               type="url"
               placeholder="https://example.com/image.jpg"
+              autoComplete="off"
               className="peer block w-full rounded-md border border-gray-700 bg-gray-800 py-2 pl-10 text-sm text-white placeholder:text-gray-500 outline-none focus:ring-2 focus:ring-indigo-500"
               aria-describedby="imageUrl-error"
               value={imageUrl}
@@ -111,6 +113,7 @@ const CreateProjectForm = ({ skills }: { skills: Skill[] }) => {
               name="githubUrl"
               type="url"
               placeholder="https://github.com/your-repo"
+              autoComplete="off"
               className="peer block w-full rounded-md border border-gray-700 bg-gray-800 py-2 pl-10 text-sm text-white placeholder:text-gray-500 outline-none focus:ring-2 focus:ring-indigo-500"
               aria-describedby="githubUrl-error"
               value={githubUrl}
@@ -135,6 +138,7 @@ const CreateProjectForm = ({ skills }: { skills: Skill[] }) => {
               name="demoUrl"
               type="url"
               placeholder="https://example.com/demo"
+              autoComplete="off"
               className="peer block w-full rounded-md border border-gray-700 bg-gray-800 py-2 pl-10 text-sm text-white placeholder:text-gray-500 outline-none focus:ring-2 focus:ring-indigo-500"
               aria-describedby="demoUrl-error"
               value={demoUrl}
