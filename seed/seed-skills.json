@@ -1,17 +1,37 @@
 [
   {
+    "name": ".NET",
+    "yearsOfExperience": 5,
+    "proficiency": "Expert"
+  },
+  {
+    "name": "Next.js",
+    "yearsOfExperience": 1,
+    "proficiency": "Intermediate"
+  },
+  {
     "name": "JavaScript",
     "yearsOfExperience": 5,
     "proficiency": "Advanced"
   },
   {
     "name": "TypeScript",
-    "yearsOfExperience": 2,
+    "yearsOfExperience": 3,
     "proficiency": "Intermediate"
+  },
+  {
+    "name": "JavaScript",
+    "yearsOfExperience": 5,
+    "proficiency": "Advanced"
   },
   {
     "name": "React",
     "yearsOfExperience": 3,
+    "proficiency": "Intermediate"
+  },
+  {
+    "name": "Next.js",
+    "yearsOfExperience": 1,
     "proficiency": "Intermediate"
   },
   {
@@ -38,5 +58,10 @@
     "name": "CSS",
     "yearsOfExperience": 5,
     "proficiency": "Advanced"
+  },
+  {
+    "name": "Postgres",
+    "yearsOfExperience": 2,
+    "proficiency": "Intermediate"
   }
 ]

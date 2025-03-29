@@ -1,5 +1,29 @@
 [
   {
+    "title": "ZaneStacked",
+    "slug": "zanestacked",
+    "description": "A futuristic, dark-themed portfolio to showcase skills and projects.",
+    "imageUrl": "https://example.com/images/zanestacked.png",
+    "githubUrl": "https://github.com/neurothrone/zane-stacked",
+    "demoUrl": "https://zanestacked.dev"
+  },
+  {
+    "title": "Excuses API",
+    "slug": "excuses-api",
+    "description": "An API that serves darkly humorous excuses for daily failures.",
+    "imageUrl": "https://example.com/images/excuses-api.png",
+    "githubUrl": "https://github.com/neurothrone/excuses-api",
+    "demoUrl": "https://excuses-api.dev"
+  },
+  {
+    "title": "Byte Me Truck",
+    "slug": "byte-me-truck",
+    "description": "A food truck frontend project powered by RTK Query and Vite.",
+    "imageUrl": "https://example.com/images/byte-me-truck.png",
+    "githubUrl": "https://github.com/neurothrone/byte-me-truck",
+    "demoUrl": null
+  },
+  {
     "title": "Project 1",
     "slug": "project-1",
     "description": "This is project 1",
@@ -12,21 +36,23 @@
     "slug": "project-2",
     "description": "This is project 2",
     "imageUrl": "https://picsum.photos/200",
-    "githubUrl": "https://github.com"
+    "githubUrl": "https://github.com",
+    "demoUrl": null
   },
   {
     "title": "Project 3",
     "slug": "project-3",
     "description": "This is project 3",
     "imageUrl": "https://picsum.photos/200",
-    "githubUrl": "https://github.com",
-    "demoUrl": "https://demo.com"
+    "githubUrl": null,
+    "demoUrl": null
   },
   {
     "title": "Project 4",
     "slug": "project-4",
     "description": "This is project 4",
-    "imageUrl": "https://picsum.photos/200",
-    "githubUrl": "https://github.com"
+    "imageUrl": null,
+    "githubUrl": null,
+    "demoUrl": null
   }
 ]
