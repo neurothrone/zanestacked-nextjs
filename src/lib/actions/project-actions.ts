@@ -3,8 +3,8 @@
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import postgres from "postgres";
-import ProjectSchema from "@/src/lib/validation/project-schema";
 import slugify from "slugify";
+import ProjectSchema from "@/src/lib/validation/project-schema";
 
 const sql = postgres(process.env.POSTGRES_URL!, { ssl: "require" });
 
@@ -96,11 +96,12 @@ export async function updateProject(
   if (!validatedFields.success) {
     return {
       errors: validatedFields.error.flatten().fieldErrors,
-      message: "Missing Fields. Failed to create Project.",
+      message: "Missing Fields. Failed to update Project.",
     };
   }
 
   const { title, description, imageUrl, githubUrl, demoUrl } = validatedFields.data;
+  const skillIds = formData.getAll("skills") as string[];
 
   try {
     await sql`
@@ -114,6 +115,18 @@ export async function updateProject(
         WHERE
             id = ${id}
     `;
+
+    await sql`DELETE
+              FROM project_skills
+              WHERE
+                  project_id = ${id}`;
+    for (const skillId of skillIds) {
+      await sql`
+          INSERT INTO project_skills (project_id, skill_id)
+          VALUES (${id}, ${skillId})
+          ON CONFLICT DO NOTHING;
+      `;
+    }
   } catch (error) {
     console.error(error);
     return { message: "Database Error: Failed to update Project." };
