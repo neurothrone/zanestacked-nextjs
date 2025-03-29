@@ -64,8 +64,6 @@ const EditSkillForm = ({
             <input
               id="yearsOfExperience"
               name="yearsOfExperience"
-              type="number"
-              step="1"
               placeholder="Enter experience in years"
               className="peer block w-full rounded-md border border-gray-700 bg-gray-800 py-2 pl-10 text-sm text-white placeholder:text-gray-500 outline-none focus:ring-2 focus:ring-indigo-500"
               aria-describedby="yearsOfExperience-error"
