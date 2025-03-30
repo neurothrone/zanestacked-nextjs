@@ -1,11 +1,12 @@
 import postgres from "postgres";
 import { PostgresSkillEntity } from "@/src/data/postgres/entities/postgres-skill-entity";
-import { PostgresProjectEntity } from "@/src/data/postgres/entities/postgres-project-entity";
-import { mapEntityToProject, mapEntityToSkill } from "@/src/data/postgres/utils/mappers";
+import { PostgresProjectEntity, ProjectWithSkillsEntity } from "@/src/data/postgres/entities/postgres-project-entity";
+import { mapEntityToProject, mapEntityToProjectWithSkills, mapEntityToSkill } from "@/src/data/postgres/utils/mappers";
 
 const sql = postgres(process.env.POSTGRES_URL!, { ssl: "require" });
 
 export async function fetchSkills() {
+  // await new Promise(resolve => setTimeout(resolve, 1000));
   try {
     const data = await sql<PostgresSkillEntity[]>`
         SELECT
@@ -37,6 +38,7 @@ export async function fetchSkillById(id: string) {
 
 export async function fetchProjects() {
   try {
+
     const data = await sql<PostgresProjectEntity[]>`
         SELECT
             p.*,
@@ -45,12 +47,47 @@ export async function fetchProjects() {
         LEFT JOIN project_skills ps
                   ON ps.project_id = p.id
         GROUP BY
-            p.id
+            p.id LIMIT 6
     `;
     return data.map(mapEntityToProject);
   } catch (error) {
     console.error("Database Error:", error);
     throw new Error("Failed to fetch projects.");
+  }
+}
+
+export async function fetchProjectsWithSkills() {
+  // await new Promise(resolve => setTimeout(resolve, 1000));
+  try {
+    const data = await sql<ProjectWithSkillsEntity[]>`
+        SELECT
+            p.*,
+            COUNT(ps.skill_id)::int AS skill_count, COALESCE(
+                json_agg(
+                        json_build_object(
+                                'id', s.id,
+                                'name', s.name,
+                                'years_of_experience', s.years_of_experience,
+                                'proficiency', s.proficiency,
+                                'created_at', s.created_at
+                        ) ORDER BY s.years_of_experience DESC
+                ) FILTER(WHERE s.id IS NOT NULL),
+                '[]'
+                                                    ) AS skills
+        FROM projects            p
+        LEFT JOIN project_skills ps
+                  ON ps.project_id = p.id
+        LEFT JOIN skills         s
+                  ON s.id = ps.skill_id
+        GROUP BY
+            p.id
+        ORDER BY
+            p.created_at DESC
+    `;
+    return data.map(mapEntityToProjectWithSkills);
+  } catch (error) {
+    console.error("Database Error:", error);
+    throw new Error("Failed to fetch projects with skills.");
   }
 }
 
