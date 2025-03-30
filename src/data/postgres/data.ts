@@ -1,6 +1,6 @@
 import postgres from "postgres";
-import { PostgresSkillEntity } from "@/src/data/postgres/entities/postgres-skill-entity";
-import { PostgresProjectEntity, ProjectWithSkillsEntity } from "@/src/data/postgres/entities/postgres-project-entity";
+import { SkillEntity } from "@/src/data/postgres/entities/skill-entity";
+import { ProjectEntity, ProjectWithSkillsEntity } from "@/src/data/postgres/entities/project-entity";
 import { mapEntityToProject, mapEntityToProjectWithSkills, mapEntityToSkill } from "@/src/data/postgres/utils/mappers";
 
 const sql = postgres(process.env.POSTGRES_URL!, { ssl: "require" });
@@ -8,7 +8,7 @@ const sql = postgres(process.env.POSTGRES_URL!, { ssl: "require" });
 export async function fetchSkills() {
   // await new Promise(resolve => setTimeout(resolve, 1000));
   try {
-    const data = await sql<PostgresSkillEntity[]>`
+    const data = await sql<SkillEntity[]>`
         SELECT
             *
         FROM skills
@@ -22,7 +22,7 @@ export async function fetchSkills() {
 
 export async function fetchSkillById(id: string) {
   try {
-    const data = await sql<PostgresSkillEntity[]>`
+    const data = await sql<SkillEntity[]>`
         SELECT
             *
         FROM skills
@@ -39,7 +39,7 @@ export async function fetchSkillById(id: string) {
 export async function fetchProjects() {
   try {
 
-    const data = await sql<PostgresProjectEntity[]>`
+    const data = await sql<ProjectEntity[]>`
         SELECT
             p.*,
             COUNT(ps.skill_id) ::int AS skill_count
@@ -93,7 +93,7 @@ export async function fetchProjectsWithSkills() {
 
 export async function fetchProjectWithSkillsById(projectId: string) {
   try {
-    const data = await sql<PostgresProjectEntity[]>`
+    const data = await sql<ProjectEntity[]>`
         SELECT
             p.*,
             s.id   AS skill_id,
@@ -118,7 +118,7 @@ export async function fetchProjectWithSkillsById(projectId: string) {
 
 export async function fetchProjectById(id: string) {
   try {
-    const data = await sql<PostgresProjectEntity[]>`
+    const data = await sql<ProjectEntity[]>`
         SELECT
             *
         FROM projects
@@ -134,7 +134,7 @@ export async function fetchProjectById(id: string) {
 
 export async function fetchSkillsForProject(projectId: string) {
   try {
-    const data = await sql<PostgresSkillEntity[]>`
+    const data = await sql<SkillEntity[]>`
         SELECT
             s.*
         FROM skills               s

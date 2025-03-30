@@ -1,10 +1,10 @@
-import { PostgresSkillEntity } from "@/src/data/postgres/entities/postgres-skill-entity";
-import { PostgresProjectEntity, ProjectWithSkillsEntity } from "@/src/data/postgres/entities/postgres-project-entity";
+import { SkillEntity } from "@/src/data/postgres/entities/skill-entity";
+import { ProjectEntity, ProjectWithSkillsEntity } from "@/src/data/postgres/entities/project-entity";
 import Project from "@/src/models/project";
 import Skill from "@/src/models/skill";
 import { ProjectWithSkills } from "@/src/models/project-with-skills";
 
-export function mapEntityToSkill(entity: PostgresSkillEntity): Skill {
+export function mapEntityToSkill(entity: SkillEntity): Skill {
   return {
     id: entity.id,
     name: entity.name,
@@ -14,7 +14,7 @@ export function mapEntityToSkill(entity: PostgresSkillEntity): Skill {
   };
 }
 
-export function mapEntityToProject(entity: PostgresProjectEntity): Project {
+export function mapEntityToProject(entity: ProjectEntity): Project {
   return {
     id: entity.id,
     title: entity.title,

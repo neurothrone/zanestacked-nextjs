@@ -1,4 +1,4 @@
-export type PostgresSkillEntity = {
+export type SkillEntity = {
   id: string;
   name: string;
   years_of_experience: number;
