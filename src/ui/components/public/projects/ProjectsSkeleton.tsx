@@ -1,7 +1,9 @@
+import SectionTitle from "@/src/ui/components/public/SectionTitle";
+
 const ProjectsSkeleton = () => {
   return (
     <div className="px-4 py-6">
-      <h1 className="text-2xl font-semibold text-white mb-4">Projects</h1>
+      <SectionTitle text="Projects"/>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
         {Array.from({ length: 6 }).map((_, index) => (
           <div
@@ -9,7 +11,7 @@ const ProjectsSkeleton = () => {
             className="min-h-[26rem] animate-pulse rounded-lg bg-gradient-to-br from-violet-700 via-violet-800 to-indigo-900 shadow-md border-l-4 border-violet-500 transition-opacity duration-700 opacity-100 overflow-hidden"
           >
             {/* Image */}
-            <div className="h-48 bg-gray-900" />
+            <div className="h-48 bg-gray-900"/>
 
             <div className="p-4 space-y-3">
               <div className="h-6 w-1/2 bg-gray-600 rounded"></div>

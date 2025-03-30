@@ -1,11 +1,12 @@
 import { fetchSkills } from "@/src/data/postgres/data";
+import SectionTitle from "@/src/ui/components/public/SectionTitle";
 
 const SkillsGrid = async () => {
   const skills = await fetchSkills();
 
   return (
     <div className="px-4 py-6">
-      <h1 className="text-2xl font-semibold text-white mb-4">Skills</h1>
+      <SectionTitle text="Skills"/>
       <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
         {skills.map((skill) => (
           <div
