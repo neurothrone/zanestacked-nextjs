@@ -1,9 +1,9 @@
 import { CodeBracketIcon, CursorArrowRaysIcon } from "@heroicons/react/24/outline";
-import { fetchProjects } from "@/src/data/postgres/data";
+import { fetchProjectsWithSkills } from "@/src/data/postgres/data";
 import SectionTitle from "@/src/ui/components/public/SectionTitle";
 
 const ProjectsGrid = async () => {
-  const projects = await fetchProjects();
+  const projects = await fetchProjectsWithSkills();
 
   return (
     <div className="px-4 py-6">
@@ -49,10 +49,16 @@ const ProjectsGrid = async () => {
                 )}
               </div>
 
-              {/* Skill Chips (Placeholder) */}
+              {/* Skill Chips */}
               <div className="flex flex-wrap gap-2">
-                <span className="text-xs bg-violet-950 text-violet-100 px-2 py-1 rounded-full">Skill A</span>
-                <span className="text-xs bg-violet-950 text-violet-100 px-2 py-1 rounded-full">Skill B</span>
+                {project.skills.map((skill) => (
+                  <span
+                    key={skill.id}
+                    className="text-xs bg-violet-950 text-violet-100 px-2 py-1 rounded-full"
+                  >
+                    {skill.name}
+                  </span>
+                ))}
               </div>
             </div>
           </div>
