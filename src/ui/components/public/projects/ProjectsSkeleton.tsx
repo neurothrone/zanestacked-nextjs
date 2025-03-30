@@ -4,7 +4,7 @@ const ProjectsSkeleton = () => {
   return (
     <div className="px-4 py-6">
       <SectionTitle text="Projects"/>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
         {Array.from({ length: 6 }).map((_, index) => (
           <div
             key={index}
