@@ -2,13 +2,13 @@ import { connectToDatabase } from "@/src/data/mongodb/database";
 import { NextRequest } from "next/server";
 import InputSkillBody from "@/src/app/api/skills/InputSkillBody";
 import Skill from "@/src/models/skill";
-import MongoSkillEntity from "@/src/data/mongodb/entities/mongo-skill-entity";
+import SkillEntity from "@/src/data/mongodb/entities/skill-entity";
 import { mapSkillEntityToSkill } from "@/src/data/mongodb/utils/mappers";
 
 const GET = async () => {
   const { db } = await connectToDatabase();
-  const entities: MongoSkillEntity[] = await db
-    .collection<MongoSkillEntity>("skills")
+  const entities: SkillEntity[] = await db
+    .collection<SkillEntity>("skills")
     .find({})
     .toArray();
 

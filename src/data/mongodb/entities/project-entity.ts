@@ -1,6 +1,6 @@
 import { ObjectId } from "bson";
 
-interface MongoProjectEntity {
+interface ProjectEntity {
   _id: ObjectId;
   title: string;
   slug: string;
@@ -10,4 +10,4 @@ interface MongoProjectEntity {
   demoUrl?: string;
 }
 
-export default MongoProjectEntity;
+export default ProjectEntity;

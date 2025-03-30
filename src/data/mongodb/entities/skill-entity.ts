@@ -1,10 +1,10 @@
 import { ObjectId } from "bson";
 
-interface MongoSkillEntity {
+interface SkillEntity {
   _id: ObjectId;
   name: string;
   yearsOfExperience: number;
   proficiency: string;
 }
 
-export default MongoSkillEntity;
+export default SkillEntity;

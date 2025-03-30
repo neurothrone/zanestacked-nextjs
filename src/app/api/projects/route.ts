@@ -2,14 +2,14 @@ import { NextRequest } from "next/server";
 import { connectToDatabase } from "@/src/data/mongodb/database";
 import InputProjectBody from "@/src/app/api/projects/InputProjectBody";
 import Project from "@/src/models/project";
-import MongoProjectEntity from "@/src/data/mongodb/entities/mongo-project-entity";
+import ProjectEntity from "@/src/data/mongodb/entities/project-entity";
 import { mapProjectEntityToProject } from "@/src/data/mongodb/utils/mappers";
 import slugify from "slugify";
 
 const GET = async () => {
   const { db } = await connectToDatabase();
-  const entities: MongoProjectEntity[] = await db
-    .collection<MongoProjectEntity>("projects")
+  const entities: ProjectEntity[] = await db
+    .collection<ProjectEntity>("projects")
     .find({})
     .toArray();
 
