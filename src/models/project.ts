@@ -7,7 +7,6 @@ type Project = {
   githubUrl?: string;
   demoUrl?: string;
   createdAt: Date;
-  skillCount: number;
 };
 
 export default Project;

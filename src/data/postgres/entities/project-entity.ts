@@ -1,5 +1,3 @@
-import { SkillEntity } from "@/src/data/postgres/entities/skill-entity";
-
 export type ProjectEntity = {
   id: string;
   title: string;
@@ -9,9 +7,4 @@ export type ProjectEntity = {
   github_url?: string | null;
   demo_url?: string | null;
   created_at: Date;
-  skill_count: number;
-};
-
-export type ProjectWithSkillsEntity = ProjectEntity & {
-  skills: SkillEntity[]
 };

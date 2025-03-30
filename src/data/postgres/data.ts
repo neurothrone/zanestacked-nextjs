@@ -1,6 +1,7 @@
 import postgres from "postgres";
 import { SkillEntity } from "@/src/data/postgres/entities/skill-entity";
-import { ProjectEntity, ProjectWithSkillsEntity } from "@/src/data/postgres/entities/project-entity";
+import { ProjectEntity } from "@/src/data/postgres/entities/project-entity";
+import { ProjectWithSkillsEntity } from "@/src/data/postgres/entities/project-with-skills-entity";
 import { mapEntityToProject, mapEntityToProjectWithSkills, mapEntityToSkill } from "@/src/data/postgres/utils/mappers";
 
 const sql = postgres(process.env.POSTGRES_URL!, { ssl: "require" });
@@ -62,18 +63,18 @@ export async function fetchProjectsWithSkills() {
     const data = await sql<ProjectWithSkillsEntity[]>`
         SELECT
             p.*,
-            COUNT(ps.skill_id)::int AS skill_count, COALESCE(
-                json_agg(
-                        json_build_object(
-                                'id', s.id,
-                                'name', s.name,
-                                'years_of_experience', s.years_of_experience,
-                                'proficiency', s.proficiency,
-                                'created_at', s.created_at
-                        ) ORDER BY s.years_of_experience DESC
-                ) FILTER(WHERE s.id IS NOT NULL),
-                '[]'
-                                                    ) AS skills
+            COALESCE(
+                    json_agg(
+                            json_build_object(
+                                    'id', s.id,
+                                    'name', s.name,
+                                    'years_of_experience', s.years_of_experience,
+                                    'proficiency', s.proficiency,
+                                    'created_at', s.created_at
+                            ) ORDER BY s.years_of_experience DESC
+                    ) FILTER(WHERE s.id IS NOT NULL),
+                    '[]'
+            ) AS skills
         FROM projects            p
         LEFT JOIN project_skills ps
                   ON ps.project_id = p.id
