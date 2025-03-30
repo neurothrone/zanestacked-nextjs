@@ -9,7 +9,7 @@ const PrimaryButton = ({ href, children }: PrimaryButtonProps) => {
       href={href}
       target="_blank"
       rel="noopener noreferrer"
-      className="inline-block px-6 py-3 m-2 text-white font-semibold bg-blue-600 hover:bg-blue-700 rounded-2xl shadow-lg transition duration-200"
+      className="inline-block px-6 py-3 m-2 text-sm font-semibold text-white bg-violet-700 hover:bg-violet-600 rounded-lg shadow-md transition duration-200 focus:outline-none focus:ring-2 focus:ring-violet-400 focus:ring-offset-2"
     >
       {children}
     </a>
