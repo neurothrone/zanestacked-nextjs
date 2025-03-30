@@ -1,3 +1,6 @@
+import Project from "@/src/models/project";
+import { PostgresSkillEntity } from "@/src/data/postgres/entities/postgres-skill-entity";
+
 export type PostgresProjectEntity = {
   id: string;
   title: string;
@@ -8,4 +11,8 @@ export type PostgresProjectEntity = {
   demo_url?: string | null;
   created_at: Date;
   skill_count: number;
+};
+
+export type ProjectWithSkillsEntity = Project & {
+  skills: PostgresSkillEntity[]
 };
