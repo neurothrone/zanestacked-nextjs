@@ -1,21 +1,25 @@
+import { Suspense } from "react";
 import { Metadata } from "next";
-import PrimaryButton from "@/src/ui/components/public/PrimaryButton";
 import ZaneHero from "@/src/ui/components/public/ZaneHero";
-// import SkillList from "@/src/components/public/SkillList";
-// import ProjectList from "@/src/components/public/ProjectList";
+import SocialLinks from "@/src/ui/components/public/SocialLinks";
+import SkillsGrid from "@/src/ui/components/public/skills/SkillsGrid";
+import SkillsSkeleton from "@/src/ui/components/public/skills/SkillsSkeleton";
+import ProjectsSkeleton from "@/src/ui/components/public/projects/ProjectsSkeleton";
+import ProjectsGrid from "@/src/ui/components/public/projects/ProjectsGrid";
 
 export const metadata: Metadata = {};
 
-const HomePage= () => {
+const HomePage = () => {
   return (
     <main>
       <ZaneHero/>
-      <div className="flex justify-center gap-4 py-6 bg-gray-900">
-        <PrimaryButton href="https://github.com/neurothrone">GitHub</PrimaryButton>
-        <PrimaryButton href="https://linkedin.com/in/neurothrone">LinkedIn</PrimaryButton>
-      </div>
-      {/*<SkillList/>*/}
-      {/*<ProjectList/>*/}
+      <SocialLinks/>
+      <Suspense fallback={<SkillsSkeleton/>}>
+        <SkillsGrid/>
+      </Suspense>
+      <Suspense fallback={<ProjectsSkeleton/>}>
+        <ProjectsGrid/>
+      </Suspense>
     </main>
   );
 }
