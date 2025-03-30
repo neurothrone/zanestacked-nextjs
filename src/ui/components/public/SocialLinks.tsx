@@ -6,11 +6,11 @@ const SocialLinks = () => {
     <div className="flex justify-center gap-4 md:gap-6 py-8 border-y border-violet-900">
       <PrimaryButton href="https://github.com/neurothrone">
         <FaGithub className="inline mr-2 -mt-0.5"/>
-        GitHub
+        <span className="text-base">GitHub</span>
       </PrimaryButton>
       <PrimaryButton href="https://linkedin.com/in/neurothrone">
         <FaLinkedin className="inline mr-2 -mt-0.5"/>
-        LinkedIn
+        <span className="text-base">LinkedIn</span>
       </PrimaryButton>
     </div>
   );
