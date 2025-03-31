@@ -1,12 +1,15 @@
 import postgres from "postgres";
-import { SkillEntity } from "@/src/data/postgres/entities/skill-entity";
+import { mapEntityToProject, mapEntityToProjectWithSkills, mapEntityToSkill } from "@/src/data/postgres/utils/mappers";
 import { ProjectEntity } from "@/src/data/postgres/entities/project-entity";
 import { ProjectWithSkillsEntity } from "@/src/data/postgres/entities/project-with-skills-entity";
-import { mapEntityToProject, mapEntityToProjectWithSkills, mapEntityToSkill } from "@/src/data/postgres/utils/mappers";
+import { SkillEntity } from "@/src/data/postgres/entities/skill-entity";
+import Project from "@/src/models/project";
+import ProjectWithSkills from "@/src/models/project-with-skills";
+import Skill from "@/src/models/skill";
 
 const sql = postgres(process.env.POSTGRES_URL!, { ssl: "require" });
 
-export async function fetchSkills() {
+export async function fetchSkills(): Promise<Skill[]> {
   try {
     const data = await sql<SkillEntity[]>`
         SELECT
@@ -21,7 +24,7 @@ export async function fetchSkills() {
   }
 }
 
-export async function fetchSkillById(id: string) {
+export async function fetchSkillById(id: string): Promise<Skill | null> {
   try {
     const data = await sql<SkillEntity[]>`
         SELECT
@@ -38,7 +41,7 @@ export async function fetchSkillById(id: string) {
   }
 }
 
-export async function fetchProjects() {
+export async function fetchProjects(): Promise<Project[]> {
   try {
 
     const data = await sql<ProjectEntity[]>`
@@ -59,7 +62,7 @@ export async function fetchProjects() {
   }
 }
 
-export async function fetchProjectsWithSkills() {
+export async function fetchProjectsWithSkills(): Promise<ProjectWithSkills[]> {
   try {
     const data = await sql<ProjectWithSkillsEntity[]>`
         SELECT
@@ -94,7 +97,7 @@ export async function fetchProjectsWithSkills() {
   }
 }
 
-export async function fetchProjectWithSkillsById(projectId: string) {
+export async function fetchProjectWithSkillsById(projectId: string): Promise<ProjectWithSkills | null> {
   try {
     const data = await sql<ProjectWithSkillsEntity[]>`
         SELECT
@@ -122,14 +125,14 @@ export async function fetchProjectWithSkillsById(projectId: string) {
         GROUP BY
             p.id;
     `;
-    return data.length ? mapEntityToProject(data[0]) : null;
+    return data.length ? mapEntityToProjectWithSkills(data[0]) : null;
   } catch (error) {
     console.error("Database Error:", error);
     throw new Error("Failed to fetch projects.");
   }
 }
 
-export async function fetchProjectById(id: string) {
+export async function fetchProjectById(id: string): Promise<Project | null> {
   try {
     const data = await sql<ProjectEntity[]>`
         SELECT
@@ -146,7 +149,7 @@ export async function fetchProjectById(id: string) {
   }
 }
 
-export async function fetchSkillsForProject(projectId: string) {
+export async function fetchSkillsForProject(projectId: string): Promise<Skill[]> {
   try {
     const data = await sql<SkillEntity[]>`
         SELECT
