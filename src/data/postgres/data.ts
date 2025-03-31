@@ -7,12 +7,12 @@ import { mapEntityToProject, mapEntityToProjectWithSkills, mapEntityToSkill } fr
 const sql = postgres(process.env.POSTGRES_URL!, { ssl: "require" });
 
 export async function fetchSkills() {
-  // await new Promise(resolve => setTimeout(resolve, 1000));
   try {
     const data = await sql<SkillEntity[]>`
         SELECT
             *
-        FROM skills
+        FROM
+            skills
     `;
     return data.map(mapEntityToSkill);
   } catch (error) {
@@ -26,7 +26,8 @@ export async function fetchSkillById(id: string) {
     const data = await sql<SkillEntity[]>`
         SELECT
             *
-        FROM skills
+        FROM
+            skills
         WHERE
             id = ${id};
     `;
@@ -44,9 +45,10 @@ export async function fetchProjects() {
         SELECT
             p.*,
             COUNT(ps.skill_id) ::int AS skill_count
-        FROM projects            p
-        LEFT JOIN project_skills ps
-                  ON ps.project_id = p.id
+        FROM
+            projects                 p
+            LEFT JOIN project_skills ps
+                      ON ps.project_id = p.id
         GROUP BY
             p.id LIMIT 6
     `;
@@ -58,7 +60,6 @@ export async function fetchProjects() {
 }
 
 export async function fetchProjectsWithSkills() {
-  // await new Promise(resolve => setTimeout(resolve, 1000));
   try {
     const data = await sql<ProjectWithSkillsEntity[]>`
         SELECT
@@ -75,11 +76,12 @@ export async function fetchProjectsWithSkills() {
                     ) FILTER(WHERE s.id IS NOT NULL),
                     '[]'
             ) AS skills
-        FROM projects            p
-        LEFT JOIN project_skills ps
-                  ON ps.project_id = p.id
-        LEFT JOIN skills         s
-                  ON s.id = ps.skill_id
+        FROM
+            projects                 p
+            LEFT JOIN project_skills ps
+                      ON ps.project_id = p.id
+            LEFT JOIN skills         s
+                      ON s.id = ps.skill_id
         GROUP BY
             p.id
         ORDER BY
@@ -94,21 +96,31 @@ export async function fetchProjectsWithSkills() {
 
 export async function fetchProjectWithSkillsById(projectId: string) {
   try {
-    const data = await sql<ProjectEntity[]>`
+    const data = await sql<ProjectWithSkillsEntity[]>`
         SELECT
             p.*,
-            s.id   AS skill_id,
-            s.name AS skill_name,
-            s.years_of_experience
-        FROM projects       p
-        JOIN project_skills ps
-             ON ps.project_id = p.id
-        JOIN skills         s
-             ON s.id = ps.skill_id
+            COALESCE(
+                    json_agg(
+                            json_build_object(
+                                    'id', s.id,
+                                    'name', s.name,
+                                    'yearsOfExperience', s.years_of_experience,
+                                    'proficiency', s.proficiency,
+                                    'createdAt', s.created_at
+                            ) ORDER BY s.years_of_experience DESC
+                    ) FILTER(WHERE s.id IS NOT NULL),
+                    '[]'
+            ) AS skills
+        FROM
+            projects                 p
+            LEFT JOIN project_skills ps
+                      ON ps.project_id = p.id
+            LEFT JOIN skills         s
+                      ON s.id = ps.skill_id
         WHERE
             p.id = ${projectId}
-        ORDER BY
-            s.years_of_experience DESC
+        GROUP BY
+            p.id;
     `;
     return data.length ? mapEntityToProject(data[0]) : null;
   } catch (error) {
@@ -122,7 +134,8 @@ export async function fetchProjectById(id: string) {
     const data = await sql<ProjectEntity[]>`
         SELECT
             *
-        FROM projects
+        FROM
+            projects
         WHERE
             id = ${id};
     `;
@@ -138,9 +151,10 @@ export async function fetchSkillsForProject(projectId: string) {
     const data = await sql<SkillEntity[]>`
         SELECT
             s.*
-        FROM skills               s
-        INNER JOIN project_skills ps
-                   ON ps.skill_id = s.id
+        FROM
+            skills                    s
+            INNER JOIN project_skills ps
+                       ON ps.skill_id = s.id
         WHERE
             ps.project_id = ${projectId};
     `;
