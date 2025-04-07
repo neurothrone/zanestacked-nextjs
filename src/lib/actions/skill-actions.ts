@@ -37,8 +37,10 @@ export async function createSkill(prevState: SkillFormState, formData: FormData)
 
   try {
     await sql`
-        INSERT INTO skills (name, years_of_experience, proficiency)
-        VALUES (${name}, ${yearsOfExperience}, ${proficiency})
+        INSERT INTO
+            skills (name, years_of_experience, proficiency)
+        VALUES
+            (${name}, ${yearsOfExperience}, ${proficiency})
     `;
   } catch (error) {
     console.error(error);
@@ -74,9 +76,10 @@ export async function updateSkill(
   try {
     await sql`
         UPDATE skills
-        SET name              = ${name},
+        SET
+            name                = ${name},
             years_of_experience = ${yearsOfExperience},
-            proficiency       = ${proficiency}
+            proficiency         = ${proficiency}
         WHERE
             id = ${id}
     `;
@@ -91,7 +94,8 @@ export async function updateSkill(
 
 export const deleteSkill = async (id: string) => {
   await sql`DELETE
-            FROM skills
+            FROM
+                skills
             WHERE
                 id = ${id}`;
   revalidatePath("/admin/skills");

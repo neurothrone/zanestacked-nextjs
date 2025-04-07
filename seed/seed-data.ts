@@ -50,13 +50,15 @@ const seedProjects = async () => {
   return await Promise.all(
     projects.map(
       (p) => sql`
-          INSERT INTO projects (title, slug, description, image_url, github_url, demo_url)
-          VALUES (${p.title},
-                  ${p.slug},
-                  ${p.description},
-                  ${p.imageUrl ?? null},
-                  ${p.githubUrl ?? null},
-                  ${p.demoUrl ?? null})
+          INSERT INTO
+              projects (title, slug, description, image_url, github_url, demo_url)
+          VALUES
+              (${p.title},
+               ${p.slug},
+               ${p.description},
+               ${p.imageUrl ?? null},
+               ${p.githubUrl ?? null},
+               ${p.demoUrl ?? null})
           ON CONFLICT (id) DO NOTHING;
       `,
     ),

@@ -47,9 +47,11 @@ export async function createProject(
 
   try {
     const inserted = await sql`
-        INSERT INTO projects (title, slug, description, image_url, github_url, demo_url)
-        VALUES (${title}, ${slugify(title)}, ${description}, ${imageUrl ?? null}, ${githubUrl ?? null},
-                ${demoUrl ?? null})
+        INSERT INTO
+            projects (title, slug, description, image_url, github_url, demo_url)
+        VALUES
+            (${title}, ${slugify(title)}, ${description}, ${imageUrl ?? null}, ${githubUrl ?? null},
+             ${demoUrl ?? null})
         RETURNING id
     `;
 
@@ -63,8 +65,10 @@ export async function createProject(
 
     for (const skillId of skillIds) {
       await sql`
-          INSERT INTO project_skills (project_id, skill_id)
-          VALUES (${projectId}, ${skillId})
+          INSERT INTO
+              project_skills (project_id, skill_id)
+          VALUES
+              (${projectId}, ${skillId})
           ON CONFLICT DO NOTHING;
       `;
     }
@@ -106,7 +110,8 @@ export async function updateProject(
   try {
     await sql`
         UPDATE projects
-        SET title       = ${title},
+        SET
+            title       = ${title},
             slug        = ${slugify(title)},
             description = ${description},
             image_url   = ${imageUrl ?? null},
@@ -117,13 +122,16 @@ export async function updateProject(
     `;
 
     await sql`DELETE
-              FROM project_skills
+              FROM
+                  project_skills
               WHERE
                   project_id = ${id}`;
     for (const skillId of skillIds) {
       await sql`
-          INSERT INTO project_skills (project_id, skill_id)
-          VALUES (${id}, ${skillId})
+          INSERT INTO
+              project_skills (project_id, skill_id)
+          VALUES
+              (${id}, ${skillId})
           ON CONFLICT DO NOTHING;
       `;
     }
@@ -138,7 +146,8 @@ export async function updateProject(
 
 export const deleteProject = async (id: string) => {
   await sql`DELETE
-            FROM projects
+            FROM
+                projects
             WHERE
                 id = ${id}`;
   revalidatePath("/admin/projects");
